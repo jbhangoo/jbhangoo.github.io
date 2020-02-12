@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Metro 4 -->
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+</head>
+    <body>
+        <h1>Jasbir Bhangoo</h1>
+        <h4>Recursion Examples</h4>
+        <table>
+        <tr><td padding="5">
+        <h6>Towers of Hanoi</h6>
+        <p>Solve the Towers of Hanoi problem for n disks by recursion to solve the subproblem of n-1 disks.
+        This leaves the simple inductive step of moving the last disk.</p>
+        <pre>
+        <code>
+        '''
+        Towers of Hanoi
+        '''
+        def hanoi(n, s, d):
+        '''
+        Inputs:
+        n:  Number of disks
+        s:  Starting peg
+        d:  Destination peg
+
+        Assumptions:
+        3 pegs in total
+        A disk can only be moved to an empty peg or on top of
+        a higher numbered disk
+
+        Solve the problem using recursion to solve for n-1 disks
+        Then just move disk n to peg d, and use recursion again 
+        '''
+        if n == 1:
+            # There are no higher numbered disks, so just move it
+            print ('{}:\t{}\t{}'.format(n, s, d))
+        else:
+            # The transition peg t is the unused open
+            # Step 1: Move all disks except the last to t
+            # Step 2: Move last disk to d
+            # Step 3: Move all disks except last to d also
+            t = 6 - s - d
+            hanoi(n-1,s,t)
+            print ('{}:\t{}\t{}'.format(n, s, d))
+            hanoi(n-1,t,d)
+
+        print ('disk\tsource\ttarget')
+
+        # Test with 7 disks
+        hanoi(7,1,2)
+        </code>
+        </pre>
+        </td>
+        <td>&nbsp;</td>
+        <td>
+        <h6>Context Free Language</h6>
+        <p>A pushdown automata is needed to recognize valid strings in a context free language.
+        Instead of implementing a stack data structure, this example uses recursion as an implicit stack.</p>
+        <pre>
+        <code>
+        '''
+        Write a program that tests if a binary string is VALID [a binary string can only contain "A" or "B"].
+
+        1. If the string is exactly "A", it is VALID
+        2. If the first and last character is "B" and the rest of the string in between the two is VALID, then the whole string is VALID
+        3. Every other string is not VALID
+
+        You could loop through the string, character by character and keep track of the number of B's
+        or even more simply by pushing each occurrence onto a stack.
+        But it is easier to write a short function that calls itself recursively.
+        '''
+
+        def isValid(testString):
+        if testString == '':
+            return False
+        elif testString == 'A':
+            return True
+        elif (testString[0]=='B') and (testString[-1]=='B'):
+            testString = testString[1:-1]
+            return isValid(testString)
+        else:
+            return False
+
+        # VALID strings
+        print(isValid("A"))
+        print(isValid("BBBBABBBB"))
+        print(isValid("BAB"))
+
+        # not VALID
+        print(isValid("BB"))
+        print(isValid("BBBBABBB"))
+        print(isValid("AA"))
+        print(isValid("AAAAAB"))
+        print(isValid("BBAAAAB"))
+        print(isValid("BAAAB"))
+        </code>
+        </pre>
+        </td></tr>
+        </table>
+    <!-- Metro 4 -->
+    <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+    </body>
+</html>
