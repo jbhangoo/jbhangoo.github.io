@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metro 4 -->
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+</head>
+<body class="m-3">
+    <h1>Jasbir Bhangoo</h1>
+    <h4>Javascript API call</h4>
+    <script src="usda.js"></script>
+    <p>Simple example that retrieves quick stats from the USDA API.
+    Makes an asynchronous HTTP GET request then compiles the response when it is available.</p>
+    <p>Select a crop and US state of interest.
+    You can choose a year and whether you want data for that year, before it or after with the "Comparison" dropdown.</p>
+    <p>&nbsp;</p>
+    <table class="table">
+      <tr>
+        <th>Commodity</th>
+        <th>Where</th>
+        <th>When</th>
+      </tr>
+      <tr>
+        <td>
+          Choose a prodcut
+          <select id="selCrop">
+            <option>Click here to choose</option>
+            <option>GEESE</option>
+            <option>GREASE</option>
+            <option>SHEEP</option>
+            <option>YOGURT</option>
+            <option>PEAS & CARROTS	</option>
+            <option>RED MEAT</option>
+          </select>
+        </td>
+        <td>
+          Enter 2 letter state code:
+          <input type="text" id="txtWhere">
+        </td>
+        <td>
+          Enter 4 digit year:
+          <input type="text" id="txtWhen">
+          <select id="selWhen">
+            <option value="">Choose a comparison here</option>
+            <option value="year_LT">&lt;</option>
+            <option value="year_LE">&lt;&equals;</option>
+            <option value="year">&equals;</option>
+            <option value="year_GE">&gt;&equals;</option>
+            <option value="year_GT">&gt;</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <input type="button" onclick="agGet()" value="GET IT">
+          <textarea id="txtUrl" rows="2" cols="80"></textarea>
+          <textarea id="txtResult" rows="10" cols="80"></textarea>
+        </td>
+      </tr>
+  </body>
+</html>
