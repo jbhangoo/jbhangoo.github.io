@@ -1,2 +1,13 @@
 /unused/
 /venv/
+/src/Neural/testset/lisa-traffic-light-dataset/
+/src/keras-retinanet-disable-tf2-behavior/
+/src/keras-2.3.1.fizyr2/
+/src/keras-2.3.1.fizyr2/
+/src/keras-retinanet-disable-tf2-behavior/
+__pycache__/
+/src/Neural/data/
+/src/Neural/models/
+/src/Genome/data/
+/src/keras-2.3.1.fizyr2/
+/src/keras-retinanet-disable-tf2-behavior/

@@ -11,8 +11,8 @@ from src.Classify.NaiveBayes import NaiveBayes
 def fillMissing(X):
     '''
     Replace missing inputs by averaging the other values for that attribute
-    :param X:   Dataframe of input values with missing values
-    :return:    Dataframe with missing values filled in
+    :param X:   data of input values with missing values
+    :return:    data with missing values filled in
     '''
     imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
     imputer.fit(X)

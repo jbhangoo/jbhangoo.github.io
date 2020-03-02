@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Metro 4 -->
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+</head>
+<body class="mx-auto p-3">
+    <h1>Jasbir Bhangoo</h1>
+
+    <h3>Genome Assembly and Alignment</h3>
+
+    <h6>Summary</h6>
+    <p>
+        These examples were generated from exercises for Coursera classes
+        <a href="https://www.coursera.org/learn/dna-sequencing">Algorithms for DNA Sequencing</a> and
+        <a href="https://www.coursera.org/learn/genome-sequencing?specialization=bioinformatic">Genome Sequencing (Bioinformatics II)</a>
+    </p>
+
+    <h6>Assembly</h6>
+    <p>
+        Two method of Overlapping Reads is implemented and the DeBruijn Network method is planned for the future.
+    </p>
+    <p>Summary of the overlapping reads method
+        <pre>
+        1. Extract all k-mers from all sequencing reads. Keep a data structure of all reads that each k-mer was seen in.
+        2. Use the data structure to create a candidate list of all read pairs with a k-mer in common
+        3. Test each candidate read pair and build an adjascency graph from all read pairs that overlap.
+        (A read pair overlaps if some suffix of the first is a prefix of the second)
+        4. Determine the contigs
+        a) Trace all paths through the adjasency graph
+        b) For each path, assemble the contig by merging the suffix of each node with the overlapping prefix of the next
+        </pre>
+    </p>
+
+    <h6>Source Code</h6>
+    <p>Source code is avilable in the Github repository associated with this page under <i>src/Genome</i>.</p>
+
+    <h6>Data Source</h6>
+    <p>Genome data is made publicly available from the
+    <a href="https://www.ncbi.nlm.nih.gov/guide/howto/dwn-genome/">National Center for Biotechnology Information</a>.
+    Rights and ownership of the individual files may be claimed by the original owners of the data. Unless
+    ownership rights are specifically claimed, they can be used freely.
+    </p>
+</body>
+</html>

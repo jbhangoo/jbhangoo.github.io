@@ -1,0 +1,15 @@
+Genome sequencing
+
+The ideal goal is to determine the shortest common superstring of a set of sequencing reads.
+
+NOTE: This example assumes reads come from FASTA formatted files.
+
+Steps are described in the Coursera course "Algorithms for DNA Sequencing" at Johns Hopkins University
+
+1. Extract all k-mers from all sequencing reads. Keep a data structure of all reads that each k-mer was seen in.
+2. Use the data structure to create a candidate list of all read pairs with a k-mer in common
+3. Test each candidate read pair and build an adjascency graph from all read pairs that overlap.
+(A read pair overlaps if some suffix of the first is a prefix of the second)
+4. Determine the contigs
+ a) Trace all paths through the adjasency graph
+ b) For each path, assemble the contig by merging the suffix of each node with the overlapping prefix of the next
