@@ -3,7 +3,7 @@ var API_KEY = "USDA-API-KEY";
 
 var AG_STATS_KEY = "AG-KEY"
 var AG_STATS_URL="https://quickstats.nass.usda.gov/api/api_GET";
-
+var LOCTYPE = "state_alpha";
 
 function ersGet(elt) {
   var cmd = document.getElementById("txtResult").value;
@@ -11,13 +11,12 @@ function ersGet(elt) {
 }
 
 function agGet() {
-
   var crop = document.getElementById("selCrop").value;
-  var loctype = "state_alpha"; //document.getElementById("selWhere").value;
   var loc = document.getElementById("txtWhere").value;
   var compare = document.getElementById("selWhen").value;
   var year = document.getElementById("txtWhen").value;
-  var url = AG_STATS_URL+"?key="+AG_STATS_KEY+"&"+loctype+"="+loc+"&"+compare+"="+year;
+  var apikey = document.getElementById("txtStatsKey").value;
+  var url = AG_STATS_URL+"?key=${apikey}&${LOCTYPE}=${loc}&compare=${year}";
   document.getElementById("txtUrl").innerHTML = url;
   httpGet(url);
 }
