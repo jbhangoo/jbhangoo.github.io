@@ -1,5 +1,7 @@
 Genome sequencing
 
+Overlapping Reads
+
 The ideal goal is to determine the shortest common superstring of a set of sequencing reads.
 
 NOTE: This example assumes reads come from FASTA formatted files.
@@ -13,3 +15,15 @@ Steps are described in the Coursera course "Algorithms for DNA Sequencing" at Jo
 4. Determine the contigs
  a) Trace all paths through the adjasency graph
  b) For each path, assemble the contig by merging the suffix of each node with the overlapping prefix of the next
+
+ De Bruijn Network
+
+Turn reads into k-mers. Split those into left and right (k-1)-mers, connected by a directed edge. This will form
+a directed multi-graph, since k-mers will likely be repeated. This is called a De Bruijn Network
+
+A Eurlian path in a graph is one that contains every edge exactly once. This would form the ideal genome sequence.
+
+But sequencing is imperfect so this is not likely to exist. Instead, try to form the longest non-overlapping paths
+through the network
+
+ Using Paired Reads

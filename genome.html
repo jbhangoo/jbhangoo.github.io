@@ -22,28 +22,44 @@
 
     <h6>Assembly</h6>
     <p>
-        Two method of Overlapping Reads is implemented and the DeBruijn Network method is planned for the future.
+        Two methods are implemented: Overlapping Reads and DeBruijn Network.
     </p>
-    <p>Summary of the overlapping reads method
-        <pre>
-        1. Extract all k-mers from all sequencing reads. Keep a data structure of all reads that each k-mer was seen in.
-        2. Use the data structure to create a candidate list of all read pairs with a k-mer in common
-        3. Test each candidate read pair and build an adjascency graph from all read pairs that overlap.
-        (A read pair overlaps if some suffix of the first is a prefix of the second)
-        4. Determine the contigs
-        a) Trace all paths through the adjasency graph
-        b) For each path, assemble the contig by merging the suffix of each node with the overlapping prefix of the next
-        </pre>
-    </p>
-
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <span style="font-weight:500;">Overlapping reads summary</span>
+            <ol>
+            <li>Extract all k-mers from all sequencing reads. Keep a data structure of all reads that each k-mer was seen in
+            <li>Use the data structure to create a candidate list of all read pairs with a k-mer in common
+            <li>Test each candidate read pair and build an adjascency graph from all read pairs that overlap.
+            (A read pair overlaps if some suffix of the first is a prefix of the second)
+            <li>Determine the contigs
+            <ol>
+            <li>Trace all paths through the adjasency graph
+            <li>For each path, assemble the contig by merging the suffix of each node with the overlapping prefix of the next
+            </ol>
+            </ol>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <span style="font-weight:500;">De Bruijn summary</span>
+            <ol>
+            <li>Extract all k-mers from all sequencing reads
+            <li>Split each k-mer into left and right (k-1)-mers
+            <li>Create an edge from the left part to the right part. The resulting directed mutli-graph is a
+                <span style="font-style:oblique;">De Bruijn Network</span>.
+            <li>Try to find an <span style="font-style:oblique;">Euler Path</span> through the network
+                that passes through each edge exactly once. This would be the reconstruction of the original sequence.
+                <li>In practice, the reads are imperfect. So allow for errors by combining (k-1)-mers that are similar
+                into one node. Return the longest path through the network if the Euler Path does not exist.
+            </ol>
+        </div>
+    </div>
     <h6>Source Code</h6>
     <p>Source code is avilable in the Github repository associated with this page under <i>src/Genome</i>.</p>
 
     <h6>Data Source</h6>
-    <p>Genome data is made publicly available from the
+    <p>A repository of genome data is publicly available from the
     <a href="https://www.ncbi.nlm.nih.gov/guide/howto/dwn-genome/">National Center for Biotechnology Information</a>.
-    Rights and ownership of the individual files may be claimed by the original owners of the data. Unless
-    ownership rights are specifically claimed, they can be used freely.
+    Unless ownership rights are specifically claimed, they can be used freely.
     </p>
 </body>
 </html>
