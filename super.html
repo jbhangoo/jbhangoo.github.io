@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Metro 4 -->
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+    <body class="mx-auto p-3">
+        <h1>Jasbir Bhangoo</h1>
+        <h3>Feature selection</h3>
+
+        <h6>Summary</h6>
+        <p>
+            In November 2018, U. Penn researcher Kamal Hamidieh published a paper about predicting critical temperature
+            of superconducting material. His method focused on feature selection to achieve a high accuracy statistical
+            model. This exercise demonstrates feature selection techniques using this dataset.
+        </p>
+        <h6>Data Set</h6>
+        <p>
+            81 chemical properties were recorded for 21,263 superconductor materials, along with their critical temperature.
+        </p>
+        <h6>Analysis</h6>
+        <div style="font-weight:500">Analysis was done in Python. Feature selection used pandas and seaborn.
+            Model development used scikit-learn.</div>
+        <p>To begin, I read the description of the data which explained that multiple variations of the same chemical
+            properties were recorded for each material. Pandas read_csv put the data into a DataFrame. The following
+            column names were extracted, including the target <span style="font-family:Courier">critical_temp</span>:
+        </p>
+            <pre>
+                ['number_of_elements', 'mean_atomic_mass', 'wtd_mean_atomic_mass', 'gmean_atomic_mass',
+                  'wtd_gmean_atomic_mass', 'entropy_atomic_mass', 'wtd_entropy_atomic_mass', 'range_atomic_mass',
+                  'wtd_range_atomic_mass', 'std_atomic_mass', 'wtd_std_atomic_mass', 'mean_fie', 'wtd_mean_fie',
+                  'gmean_fie', 'wtd_gmean_fie', 'entropy_fie', 'wtd_entropy_fie', 'range_fie', 'wtd_range_fie',
+                  'std_fie', 'wtd_std_fie', 'mean_atomic_radius', 'wtd_mean_atomic_radius', 'gmean_atomic_radius',
+                  'wtd_gmean_atomic_radius', 'entropy_atomic_radius', 'wtd_entropy_atomic_radius',
+                  'range_atomic_radius', 'wtd_range_atomic_radius', 'std_atomic_radius', 'wtd_std_atomic_radius',
+                  'mean_Density', 'wtd_mean_Density', 'gmean_Density', 'wtd_gmean_Density', 'entropy_Density',
+                  'wtd_entropy_Density', 'range_Density', 'wtd_range_Density', 'std_Density', 'wtd_std_Density',
+                  'mean_ElectronAffinity', 'wtd_mean_ElectronAffinity', 'gmean_ElectronAffinity',
+                  'wtd_gmean_ElectronAffinity', 'entropy_ElectronAffinity', 'wtd_entropy_ElectronAffinity',
+                  'range_ElectronAffinity', 'wtd_range_ElectronAffinity', 'std_ElectronAffinity',
+                  'wtd_std_ElectronAffinity', 'mean_FusionHeat', 'wtd_mean_FusionHeat', 'gmean_FusionHeat',
+                  'wtd_gmean_FusionHeat', 'entropy_FusionHeat', 'wtd_entropy_FusionHeat', 'range_FusionHeat',
+                  'wtd_range_FusionHeat', 'std_FusionHeat', 'wtd_std_FusionHeat', 'mean_ThermalConductivity',
+                  'wtd_mean_ThermalConductivity', 'gmean_ThermalConductivity', 'wtd_gmean_ThermalConductivity',
+                  'entropy_ThermalConductivity', 'wtd_entropy_ThermalConductivity', 'range_ThermalConductivity',
+                  'wtd_range_ThermalConductivity', 'std_ThermalConductivity', 'wtd_std_ThermalConductivity',
+                  'mean_Valence', 'wtd_mean_Valence', 'gmean_Valence', 'wtd_gmean_Valence', 'entropy_Valence',
+                  'wtd_entropy_Valence', 'range_Valence', 'wtd_range_Valence', 'std_Valence', 'wtd_std_Valence',
+                  'critical_temp']
+            </pre>
+
+        <p>This suggested I should first compute the correlation matrix.
+            I performed minor transformations to make possible feature dependencies stand out better.
+            <ul>
+            <li>Rearrage the features to put variations of similar chemical properties together, based on name</li>
+            <li>Force any correlation below 0.7 to 0 to make strong correlations more obvious</li>
+            <li>Visualize the correlation matrix as a seaborn heatmap with colormap defined to highlight extremes</li>
+            </ul>
+        </p>
+        <p>
+            The correlation matrix showed strong relationships between groups on features.
+            I selected these columns to try and maximize feature independence:
+            <pre>
+            'wtd_entropy_atomic_mass'
+            'wtd_range_atomic_mass'
+            'wtd_std_atomic_mass'
+            'wtd_entropy_fie'
+            'wtd_range_fie'
+            'wtd_std_fie'
+            'wtd_mean_atomic_radius'
+            'wtd_mean_Density'
+            'wtd_mean_ElectronAffinity'
+            'wtd_mean_FusionHeat'
+            'wtd_range_ThermalConductivity'
+            </pre>
+        </p>
+        <p>
+            To validate the choice, visualize these selected columns using seaborn pairplot. This showed there was
+            still some feature dependence that was not large enough to appear on the correlation heatmap.
+            I further reduced the feature set to these essential ones:
+        </p>
+            <pre>
+            'wtd_entropy_atomic_mass'
+            'wtd_range_atomic_mass'
+            'wtd_std_atomic_mass'
+            'wtd_range_fie'
+            'wtd_std_fie'
+            'wtd_mean_atomic_radius'
+            'wtd_mean_Density'
+            'wtd_mean_FusionHeat'
+            'wtd_range_ThermalConductivity'
+            </pre>
+        <h6>Model Creation</h6>
+        <p>
+            I produced Linear Regression models for both the full feature set and the reduced set to see the
+            effect of feature selection. But first I split the dataset into two groups. 80% of the data was used to train
+            the models and 20% was reserved for making test predictions.
+        </p>
+        <p>I also made predictions with the training set. Test error is often a little higher than for training.
+            If the difference is too large, a regularization term may be needed. However, if the training error is large,
+            we can look at each feature's distribution in detail in a seaborn boxplot then decide how to proceed.
+        </p>
+        <h6>Results</h6>
+        <table>
+            <tr><th></th><th colspan="2">Mean Squared Error</th><th colspan="2">R^2</th></tr>
+            <tr><th></th><th>Training</th><th>Test</th><th>Training</th><th>Test</th></tr>
+            <tr><th>All features</th><td>308.52</td><td>308.32</td><td>0.737</td><td>0.735</td></tr>
+            <tr><th>Feature subset</th><td>3.023e-26</td><td>2.632e-26</td><td>1.0</td><td>1.0</td></tr>
+        </table>
+        <p>
+            The results show that feature selection produced a very good quality model. 
+        </p>
+        <h6>Source Code</h6>
+        <p>To be added soon</p>
+        <h6>Data Source</h6>
+        <p>Data is available at <a href="https://supercon.nims.go.jp/index_en.html">SuperCon</a>, the Superconducting
+            Material Database. Originally used in
+            <cite>Kam Hamidieh; A Data-Driven Statistical Model for Predicting the Critical Temperature of a Superconductor.
+                Computational Materials Science, Volume 154, Pages 346-354 (2018).</cite>
+            [<a href="https://www.sciencedirect.com/science/article/abs/pii/S0927025618304877">link</a>]
+        </p>
+    </body>
+</html>

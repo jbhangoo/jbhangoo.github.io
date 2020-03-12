@@ -9,10 +9,11 @@ import time
 
 from keras_retinanet.models import load_model
 
-model = load_model('resnet50_coco_best_v2.1.0.h5', backbone_name='resnet50')
+#model = load_model('resnet50_coco_best_v2.1.0.h5', backbone_name='resnet50')
+model = load_model('gun_model.h5', backbone_name='resnet50')
 
 # load image
-image = read_image_bgr('data/weapon/testset/gun6.jpg')
+image = read_image_bgr('data/weapon/testset/gun8.jpg')
 
 # copy to draw on
 draw = image.copy()

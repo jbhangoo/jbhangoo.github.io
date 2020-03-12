@@ -30,9 +30,13 @@ def encodeLabels(y):
     y_enc = encoder.transform(y)
     return y_enc
 
+
+regression_columns = ['bj_000', 'bk_000', 'bz_000', 'br_000', 'ca_000' ]
+
 # Create input dataframe and output labels from the training set
 dfTrain = pd.read_csv("data/aps_failure_training_set.csv")
 X = dfTrain.drop('class', axis=1)
+X = dfTrain[regression_columns]
 y = dfTrain['class']
 
 # Replace missing inputs by averaging the other values for that attribute
@@ -52,6 +56,7 @@ model = NaiveBayes(X_train, y_train, scaling_function=MinMaxScaler)
 
 dfTest = pd.read_csv("data/aps_failure_test_set.csv")
 X_test = dfTest.drop('class', axis=1)
+X_test = dfTest[regression_columns]
 y_test = dfTest['class']
 
 # Replace missing inputs by averaging the other values for that attribute

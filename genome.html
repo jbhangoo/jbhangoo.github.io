@@ -14,13 +14,19 @@
     <h3>Genome Assembly and Alignment</h3>
 
     <h6>Summary</h6>
+    <p>DNA sequencers "read" short segments or "sequences" from the genome. The challenge is to re-assemble them into the full genome.
+        Sequencers are imperfect. They contain errors and gaps. Also the collection of all sequences are not complete.
+        Therefore the same genome must be sequenced many times to introduce redundancy. But this makes it hard to re-assemble the genome because short
+        segments are often repeated in multiple places in the genome. It is hard to tell if any particular repeated sequence is
+        a copy of one previously seen or from a different place.
+    </p>
     <p>
         These examples were generated from exercises for Coursera classes
         <a href="https://www.coursera.org/learn/dna-sequencing">Algorithms for DNA Sequencing</a> and
         <a href="https://www.coursera.org/learn/genome-sequencing?specialization=bioinformatic">Genome Sequencing (Bioinformatics II)</a>
     </p>
 
-    <h6>Assembly</h6>
+    <h6>Read Assembly</h6>
     <p>
         Two methods are implemented: Overlapping Reads and DeBruijn Network.
     </p>
@@ -53,6 +59,12 @@
             </ol>
         </div>
     </div>
+    <h6>Paired Read Assembly</h6>
+    <p>
+    <span style="font-style:oblique;">Paired-end</span> DNA sequencers produce longer much sequences, but they have a
+        "gap" region in the middle with unknown composition. Therefore, each read consists of two sequences whose
+        position is known relative to each other.
+    </p>
     <h6>Source Code</h6>
     <p>Source code is avilable in the Github repository associated with this page under <i>src/Genome</i>.</p>
 
