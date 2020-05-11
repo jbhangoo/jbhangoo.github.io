@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Metro 4 -->
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+</head>
+    <body class="mx-auto p-3">
+        <h1>Jasbir Bhangoo</h1>
+        <h3>Convolutional Neural Network: Bird Species Classifier</h3>
+
+        <h6>Summary</h6>
+        <p>
+            The goal is to produce a classification model which predicts the species given an image of a bird.
+            The model is a convolutional neural network. It is possible to reach high accuracy in relatively short time
+            by taking advantage of transfer learning.
+        </p>
+        <p>
+            The species are selected as ones that are common in Southern Zrizona as this project was supported by
+            the <a href="tucsonbirds.org">Tucson Bird Count</a>. The list started as a subset of the
+            <a href="https://www.kaggle.com/gpiosenka/100-bird-species">200 Birds Species</a> by removing ones that
+            have not been detected in that region. Common species from the Bird Count dataset were then added.
+        </p>
+        <h3>Model Development</h3>
+        <p>In Keras it is straightforward to fine tune the standard Inception V3 network using transfer learning.
+             Load the standard Inception V3 backbone but replace the top layer with a combination of Pooling
+            followed by densely connected layers to produce one prediction score per species. </p>
+        <p>The dataset contains 16435 images across 110 species. That set is augmented by randomly adjusting
+            zoom level and brightness, allowing a slight rotation and a horizontal flip. Train with batch size of 32,
+            reserving 20% of the images at each step for validation. Accuracy converges after only two epochs.</p>
+        <h3>Results</h3>
+        <p>A subset of 639 images is held out from training so the model can be tested realistically. Species predictions
+            of those images are compared to the actual, known labels to compute
+        the model's average precision, recall and F1 score</p>
+        <table class="table">
+            <tr>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>F1 Score</th>
+            </tr>
+            <tr>
+                <td align="center">97.5%</td>
+                <td align="center">97.6%</td>
+                <td align="center">97.3%</td>
+            </tr>
+        </table>
+        <h3>Application</h3>
+        To support real-world testing, it is convenient to have a Flask web app because it lets a wider range of people
+        upload their own images and compare results to their own identification. This process can also find new species
+        that should be added to the model.
+        <h3>Species List</h3>
+        <p>
+        <pre>
+            AMERICAN AVOCET, AMERICAN BITTERN, AMERICAN COOT, AMERICAN GOLDFINCH, AMERICAN KESTREL, AMERICAN PIPIT,
+            AMERICAN REDSTART,ANNAS HUMMINGBIRD, BALD EAGLE, BALTIMORE ORIOLE, BARN OWL, BARN SWALLOW,
+            BAY-BREASTED WARBLER, BELLS VIREO, BELTED KINGFISHER, BLACK BELLIED PLOVER, BLACK SKIMMER, BLACK SWAN,
+            BLACK THROATED WARBLER, BLACK VULTURE, BLACK-CAPPED CHICKADEE, BLACK-NECKED GREBE, BLUE GROUSE, BLUE HERON,
+            BROWN THRASHER, CACTUS WREN, CALIFORNIA CONDOR, CALIFORNIA GULL, CALIFORNIA QUAIL, CASPIAN TERN,
+            CHIPPING SPARROW, CINNAMON TEAL, COMMON GRACKLE, COMMON HOUSE MARTIN, COMMON LOON, COMMON POORWILL,
+            COMMON STARLING, COUCHS KINGBIRD, CRESTED CARACARA, CROW, CROWNED PIGEON, DARK EYED JUNCO, DOWNY WOODPECKER,
+            EASTERN BLUEBIRD, EASTERN MEADOWLARK, EASTERN TOWHEE, ELEGANT TROGON, EVENING GROSBEAK, FLAME TANAGER,
+            FRIGATEBIRD, GAMBELS QUAIL, GILA WOODPECKER, GLOSSY IBIS, GOLD WING WARBLER, GOLDEN EAGLE, GRAY CATBIRD,
+            HOODED MERGANSER, HOUSE FINCH, HOUSE SPARROW, INDIGO BUNTING, KILLDEER, KING VULTURE, LARK BUNTING,
+            LONG-EARED OWL, MALLARD DUCK, MOURNING DOVE, NORTHERN CARDINAL, NORTHERN FLICKER, NORTHERN GOSHAWK,
+            NORTHERN JACANA, NORTHERN MOCKINGBIRD, NORTHERN SHOVELER, OSPREY, PAINTED BUNTIG, PELICAN, PEREGRINE FALCON,
+            PURPLE FINCH, PURPLE GALLINULE, PURPLE MARTIN, QUETZAL, RED HEADED WOODPECKER, RED WINGED BLACKBIRD,
+            RING-NECKED PHEASANT, ROADRUNNER, ROBIN, ROCK DOVE, ROSY FACED LOVEBIRD, ROUGH LEG BUZZARD,
+            RUBY THROATED HUMMINGBIRD, RUFOUS KINGFISHER, SCRUB JAY, SNOWY EGRET, SORA, SPLENDID WREN, SPOONBILL,
+            STORK BILLED KINGFISHER, STRAWBERRY FINCH, TEAL, TITMOUSE, TRUMPTER SWAN, TURKEY VULTURE, VARIED THRUSH,
+            VERDIN, VERMILION FLYCATHER, VIOLET GREEN SWALLOW, WESTERN MEADOWLARK, WHITE WINGED DOVE, WILD TURKEY,
+            WOOD DUCK, YELLOW HEADED BLACKBIRD,
+        </pre>
+        </p>
+        <h6>Source Code</h6>
+        <p>Source code is avilable in the Github repository associated with this page under <i>src/bird</i>.</p>
+    </body>
+</html>
