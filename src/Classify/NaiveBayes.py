@@ -1,6 +1,6 @@
 from src.Classify.Classifier import Classifier
 from sklearn.preprocessing import StandardScaler
-from sklearn.naive_bayes import ComplementNB
+from sklearn.naive_bayes import GaussianNB
 import joblib
 
 SCALERFILE = "models/nb_scaler.J"
@@ -15,7 +15,7 @@ class NaiveBayes(Classifier):
         joblib.dump(self.scaler, open(SCALERFILE, 'wb'))
 
         # Complement Naive Bayes does not nake the assumptions of the Multinomial model. Turn off smoothing.
-        self.model = ComplementNB(alpha=0)
+        self.model = GaussianNB()
         self.model .fit(X_scaled, y_train)
 
         # save the model to disk

@@ -1,5 +1,8 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import validation_curve
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import LabelEncoder
@@ -7,6 +10,8 @@ from src.Classify.Classifier import Classifier
 from src.Classify.SupportVector import SupportVector
 from src.Classify.RandomForest import RandomForest
 from src.Classify.NaiveBayes import NaiveBayes
+
+from sklearn.linear_model import LogisticRegression
 
 def fillMissing(X):
     '''
@@ -51,8 +56,8 @@ print(category_counts)
 
 #model = Classifier(X_train, y_train, initial_weights={0:1, 1:59}, C=0.1)
 #model = SupportVector(X_train, y_train, initial_weights={0:1, 1:59}, C=0.01)
-#model = RandomForest(X_train, y_train, initial_weights='balanced_subsample')
-model = NaiveBayes(X_train, y_train, scaling_function=MinMaxScaler)
+model = RandomForest(X_train, y_train, initial_weights='balanced')
+#model = NaiveBayes(X_train, y_train, scaling_function=MinMaxScaler)
 
 dfTest = pd.read_csv("data/aps_failure_test_set.csv")
 X_test = dfTest.drop('class', axis=1)
@@ -64,6 +69,9 @@ X_filled = fillMissing(X_test)
 
 # Encode class labels
 y_enc = encodeLabels(y_test)
-
 y_pred = model.predict(X_filled)
+y_prob = model.model.predict_proba(X_filled)
+y_calls = [1 if x<0.3 else 0 for x in y_prob[:,0]]
+
 model.evaluateModel(y_enc, y_pred)
+model.evaluateModel(y_enc, y_calls)
