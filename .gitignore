@@ -4,7 +4,7 @@ __pycache__/
 /src/ML-course/
 /src/bird/data/
 /src/bird/models/
-/src/Neural
+/unused/Neural
 /src/Genome/data/
 /src/keras-2.3.1.fizyr2.zip
 /src/keras-retinanet-disable-tf2-behavior.zip
