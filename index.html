@@ -5,51 +5,92 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <!-- Metro 4 -->
-    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-    <body class="m-3">
-        <h1>Jasbir Bhangoo</h1>
-        <h3>Python examples</h3>
-        <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <a href="super.html" class="full">
-                <div data-role="tile" data-size="wide" data-role-tile="true" class="tile-wide bg-emerald">
-                    <span class="mif-equalizer2 icon"></span>
-                    <span class="branding-bar">Feature Selection</span>
+<body style="margin: 25px;">
+    <h1>Jasbir Bhangoo</h1>
+    <h3>Data Analysis Examples</h3>
+    <p>&nbsp;</p>
+    <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Feature Selection</h4>
+                    <p><img src="img/super.jpg" width="300" align="center"></p>
+                    <p class="card-text">
+                        Reduce the dimensionality of the dataset to a smaller set of core
+                        features that contribute the most to the overall objective. This significantly improves
+                        the ability of linear models to estimate a target value.
+                    </p>
+                    <p class="card-text">
+                        This example uses a large set of properties of various superconducting materials that
+                        can be used to estimate their critical temperature.
+                        Reducing the set of properties allows a simple linear relationship to estimate
+                        the critical temperature with high accuracy.
+                    </p>
+                    <a href="super.html" class="card-link">See the example</a>
                 </div>
-                </a>
-            </div>
-
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <a href="truck.html" class="full">
-                <div data-role="tile" data-size="wide" data-role-tile="true" class="tile-wide bg-mauve">
-                    <span class="mif-chart-dots icon"></span>
-                    <span class="branding-bar">Supervised Learning</span>
-                </div>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <a href="bird.html" class="full">
-                <div data-role="tile" data-size="wide" data-role-tile="true" class="tile-wide bg-blue">
-                    <span class="mif-camera icon"></span>
-                    <span class="branding-bar">Convolutional Neural Network</span>
-                </div>
-                </a>
-            </div>
-
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <a href="genome.html" class="full">
-                <div data-role="tile" data-size="wide" data-role-tile="true" class="tile-wide bg-crimson">
-                    <span class="mif-microscope icon"></span>
-                    <span class="branding-bar">Genomics</span>
-                </div>
-                </a>
             </div>
         </div>
-    <!-- Metro 4 -->
-    <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
-    </body>
+
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Supervised Learning</h4>
+                    <p><img src="img/engine.jpg" width="300" align="center"></p>
+                    <p class="card-text">
+                        Use labeled data to train a model that can categorize future inputs with high accuracy.
+                    </p>
+                    <p class="card-text">
+                        This example uses measurements from Scania truck engines to predict failures. A variety
+                        of predictive models were trained and the results compared.
+                    </p>
+                    <a href="truck.html" class="card-link">See the example</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Convolutional Neural Network</h4>
+                    <p><img src="img/verm_fly.jpg" width="300" align="center"></p>
+                    <p class="card-text">
+                        A 2-D convolutional network can learn complex features from images.
+                        From these, a classifier can be built that identifies the image.
+                    </p>
+                    <p class="card-text">
+                        This example uses the Inception V3 backbone to extract basic features
+                        with the top layers are custom trained on bird species that can be found
+                        in the Southwestern U.S.
+                    </p>
+                    <a href="bird.html" class="card-link">See the example</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Genomics</h4>
+                    <p><img src="img/Karyotype.png" width="300" align="center"></p>
+                    <p class="card-text">
+                        DNA can be extracted from living cells and sequenced to extract coded fragments.
+                    </p>
+                    <p class="card-text">
+                        This example shows various theories of reassembling the fragments into longer encodings
+                        that represent the sequence of the original DNA.
+                    </p>
+                    <a href="genome.html" class="card-link">See the example</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

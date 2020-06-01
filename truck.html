@@ -15,9 +15,26 @@
         <h6>Summary</h6>
         <p>
             The goal is to produce a classification model which predicts engine failure using supervised learning.
-            This problem focuses on the rare failure case, so we want to see precision and recall details instead
-            of just reporting a single value.
+            All models can easily detect the common, negative case (no failure). To analyze and compare the different
+            models, focus on the positive (failure) case.
         </p>
+        <p>
+            Precision and recall results were computed, which demonstrate the difficulty of accurately predicting failures.
+            The models with relatively good precision had lower recall, and vice-versa. Model selection will depend
+            whether the particular application benefits more from reducing false positives vs. false negatives.
+        </p>
+
+        <h6>Data Set</h6>
+        <p>
+            Two samples were provided by Scania, a training set and a separate test set.
+            The positive class consists of component failures for a specific component of the air pressure system (APS).
+            The negative class consists of trucks with failures of components not related to the APS.
+        </p>
+        <p>The datasets are anonymized and sampled from heavy Scania trucks in everyday usage. They were used for the
+            Industrial Challenge 2016 at The 15th International Symposium on Intelligent Data Analysis (IDA).
+        </p>
+
+        <h6>Results</h6>
         <table class="table striped hovered cell-hovered border bordered">
             <tr><th>Model</th><th>Accuracy Report</th><th>Confusion Matrix</th></tr>
             <tr>
@@ -106,27 +123,18 @@ weighted avg       0.98      0.93      0.95     16000
             </tr>
         </table>
 
-        <h6>Data Set</h6>
-        <p>
-            Two samples were provided by Scania, a training set and a separate test set.
-            The positive class consists of component failures for a specific component of the air pressure system (APS).
-            The negative class consists of trucks with failures for components not related to the APS.
-        </p>
-        <p>The datasets are anonymized and sampled from heavy Scania trucks in everyday usage. They were used for the
-            Industrial Challenge 2016 at The 15th International Symposium on Intelligent Data Analysis (IDA).
-        </p>
-
         <h6>Source Code</h6>
-        <p>Source code is available in the associated
+        <p>For more details, please check out the source code from the associated
             <a href="https://github.com/jbhangoo/jbhangoo.github.io/tree/master/src/Classify">Github repository</a>.
-            Please check out the code for the details.</p>
-        <h6>Data Source</h6>
-        <p>Data is made publicly available under the
-            <a href="http://www.gnu.org/licenses/">GNU General Public License</a>.
-            and can be downloaded from the
-            <a href="https://archive.ics.uci.edu/ml/datasets/IDA2016Challenge">UC Irvine Machine Learning Repository</a>.
         </p>
-        <p>APS Failure and Operational Data for Scania Trucks is under Copyright (c) <2016>:
+        <h6>Data Source</h6>
+        <p>Data is publicly available from the
+            <a href="https://archive.ics.uci.edu/ml/datasets/IDA2016Challenge">UC Irvine Machine Learning Repository</a>
+            and can be used under the
+            <a href="http://www.gnu.org/licenses/">GNU General Public License</a>.
+        </p>
+        <p>APS Failure and Operational Data for Scania Trucks is under Copyright (c) 2016 by:</p>
+        <div>
             <pre>
             -- Creator: Scania CV AB
             VagnmakarvÃ¤gen 1
@@ -136,6 +144,6 @@ weighted avg       0.98      0.93      0.95     16000
             -- Donor: Tony Lindgren (tony '@' dsv.su.se) and Jonas Biteus (jonas.biteus '@' scania.com)
             -- Date: September, 2016
             </pre>
-        </p>
+        </div>
     </body>
 </html>
