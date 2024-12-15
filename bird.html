@@ -15,14 +15,14 @@
         <h6>Summary</h6>
         <p>
             The goal is to produce a classification model which predicts the species given an image of a bird.
-            The model is a convolutional neural network. It is possible to reach high accuracy in relatively short time
-            by taking advantage of transfer learning.
+            The model is a convolutional neural network. It is possible to reach high accuracy in
+            relatively short time by taking advantage of transfer learning.
         </p>
         <p>
-            The species are selected as ones that are common in Southern Arizona as this project was supported by
-            the <a href="tucsonbirds.org">Tucson Bird Count</a>. The list started as a subset of the
-            <a href="https://www.kaggle.com/gpiosenka/100-bird-species">200 Birds Species</a> by removing ones
-            not been detected in that region. Common species from the local bird count dataset were then added.
+            The species are commonly found in Southern Arizona as this project was supported by
+            the <a href="tucsonbirds.org">Tucson Bird Count</a>. The list is primarily made from a subset of the
+            <a href="https://www.kaggle.com/gpiosenka/100-bird-species">200 Birds Species</a> with
+            non-local ones removed. Common species from the local bird count dataset were then added to the list.
         </p>
         <h3>Model Development</h3>
         <p>In Keras it is straightforward to fine tune the standard Inception V3 network using transfer learning.
@@ -48,9 +48,9 @@
             </tr>
         </table>
         <h3>Application</h3>
-        To support real-world testing, it is convenient to have a Flask web app because it lets a wider range of people
-        upload their own images and compare results to their own identification. This process can also find new species
-        that should be added to the model.
+        To support real-world testing, the model was build into a Flask web app to let people
+        images and compare results from the neural network to their own identification.
+        This process can also be used to find new species which should be added to the model.
         <h3>Species List</h3>
         <p>
         <pre>
